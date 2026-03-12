@@ -437,21 +437,34 @@
 💬 内容：
 ${message}`;
 
-            // 发送到飞书
+            // 发送到飞书和邮箱
             try {
-                await fetch('您的飞书webhook地址', {
+                // 调用飞书消息API发送给您
+                await fetch('https://open.feishu.cn/open-apis/message/v4/send', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ msg_type: 'text', content: { text: msg } })
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + await getFeishuToken()
+                    },
+                    body: JSON.stringify({
+                        open_id: 'ou_c067c588a80c220c16eab227eafd8c84',
+                        msg_type: 'text',
+                        content: JSON.stringify({ text: msg })
+                    })
                 });
             } catch(e) {}
 
             // 发送到邮箱
             try {
-                await fetch('https://formspree.io/f/您的formspreeID', {
+                await fetch('https://api.emailjs.com/api/v1.0/email/send', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, subject, message })
+                    body: JSON.stringify({
+                        service_id: 'default_service',
+                        template_id: 'template_contact',
+                        user_id: 'your_user_id',
+                        template_params: { name, email, subject, message, to_email: 'hongli272009@qq.com' }
+                    })
                 });
             } catch(e) {}
 
