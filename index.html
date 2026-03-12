@@ -367,7 +367,8 @@
                     </div>
                 </div>
                 <div>
-                    <form class="space-y-4" action="mailto:hongli272009@qq.com" method="GET" enctype="text/plain">
+                    <form class="space-y-4" id="contactForm">
+                        <div id="formMessage" class="hidden mb-4 p-3 rounded-lg text-center"></div>
                         <div>
                             <input type="text" placeholder="你的名字" class="w-full px-4 py-3 bg-white/10 border border-white/10 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-light placeholder:text-slate-500">
                         </div>
@@ -383,6 +384,85 @@
                         <button type="submit" class="w-full py-3 bg-gradient-to-r from-primary to-secondary rounded-lg font-medium hover:shadow-lg hover:shadow-primary/30 transition-all transform hover:-translate-y-1">
                             <i class="fa fa-paper-plane mr-2"></i>发送消息
                         </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="relative z-10 py-8 border-t border-white/10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-400 mb-4">© 2026 松石. All rights reserved.</p>
+            <p class="text-slate-500 text-sm">Made with ❤️ using HTML, CSS and JavaScript</p>
+        </div>
+    </footer>
+
+    <!-- 平滑滚动 -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-dark/80');
+                nav.classList.remove('bg-dark/40');
+            } else {
+                nav.classList.add('bg-dark/40');
+                nav.classList.remove('bg-dark/80');
+            }
+        });
+
+        // 留言表单提交
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const name = formData.get('name') || '匿名';
+            const email = formData.get('email') || '无';
+            const subject = formData.get('subject') || '无主题';
+            const message = formData.get('message') || '无内容';
+            
+            const msg = `📩 新留言通知：
+👤 姓名：${name}
+📧 邮箱：${email}
+📝 主题：${subject}
+💬 内容：
+${message}`;
+
+            // 发送到飞书
+            try {
+                await fetch('您的飞书webhook地址', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ msg_type: 'text', content: { text: msg } })
+                });
+            } catch(e) {}
+
+            // 发送到邮箱
+            try {
+                await fetch('https://formspree.io/f/您的formspreeID', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, subject, message })
+                });
+            } catch(e) {}
+
+            // 显示成功提示
+            const formMsg = document.getElementById('formMessage');
+            formMsg.textContent = '发送成功！我会尽快回复您~';
+            formMsg.className = 'mb-4 p-3 rounded-lg text-center bg-green-500/20 text-green-400';
+            this.reset();
+            setTimeout(() => { formMsg.className = 'hidden'; }, 3000);
+        });
+
                     </form>
                 </div>
             </div>
