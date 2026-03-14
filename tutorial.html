@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用 OpenClaw 制作个人主页 - 完整教程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#050507',
+                        surface: '#0a0a0f',
+                        border: '#1a1a24',
+                        text: '#ffffff',
+                        'text-dim': '#a1a1aa',
+                        'text-muted': '#71717a',
+                        orange: '#f97316'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050507;
+            color: #ffffff;
+        }
+        
+        .step-card {
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-2px);
+            border-color: #f97316;
+        }
+        
+        code {
+            background: #1a1a24;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+        }
+        
+        pre {
+            background: #1a1a24;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .tip {
+            border-left: 4px solid #f97316;
+            padding-left: 16px;
+            margin: 16px 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-bg/80 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-white hover:text-orange transition-colors">
+                ← 返回个人主页
+            </a>
+            <a href="#start" class="px-5 py-2 bg-orange hover:bg-orange-hover rounded-lg text-sm font-medium transition-colors">
+                开始学习
+            </a>
+        </div>
+    </nav>
+
+    <!-- 标题区域 -->
+    <section class="min-h-[60vh] flex items-center justify-center pt-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-8">
+                    <div class="inline-block px-4 py-2 bg-orange/10 border border-orange rounded-full text-orange text-sm mb-6">
+                        🎯 OpenClaw 实战教程
+                    </div>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
+                    使用 OpenClaw<br>制作个人主页
+                </h1>
+                
+                <p class="text-xl text-text-dim mb-8">
+                    从零开始，30 分钟打造你的专属个人主页
+                </p>
+                
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="#start" class="px-8 py-3 bg-orange hover:bg-orange-hover rounded-lg font-medium transition-all">
+                        开始学习
+                    </a>
+                    <a href="https://github.com/honglisam/honglisam.github.io" target="_blank" class="px-8 py-3 bg-surface border border-border hover:border-white rounded-lg font-medium transition-all">
+                        查看源码
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教程内容 -->
+    <section id="start" class="py-24 bg-surface">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <!-- 步骤 1 -->
+                <div class="step-card mb-12 p-8 rounded-xl border border-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            1
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">准备工作</h2>
+                            <div class="text-text-dim space-y-4">
+                                <p>在开始之前，你需要准备以下工具：</p>
+                                <ul class="list-disc list-inside space-y-2 ml-4">
+                                    <li>已安装 <strong class="text-white">OpenClaw</strong>（AI 助手）</li>
+                                    <li>已注册 <strong class="text-white">GitHub</strong> 账号</li>
+                                    <li>准备好个人照片（头像、生活照等）</li>
+                                    <li>准备好个人信息（姓名、简介、技能等）</li>
+                                </ul>
+                                
+                                <div class="tip">
+                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>OpenClaw 是一个强大的 AI 助手，可以帮你自动完成代码编写、图片压缩、Git 推送等操作。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤 2 -->
+                <div class="step-card mb-12 p-8 rounded-xl border border-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            2
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">创建 GitHub 仓库</h2>
+                            <div class="text-text-dim space-y-4">
+                                <p>1. 登录 GitHub，创建新仓库</p>
+                                <pre><code>仓库名称：你的用户名.github.io
+例如：honglisam.github.io</code></pre>
+                                
+                                <p>2. 克隆仓库到本地</p>
+                                <pre><code>git clone https://github.com/你的用户名/你的用户名.github.io.git
+cd 你的用户名.github.io</code></pre>
+                                
+                                <div class="tip">
+                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>GitHub Pages 会自动部署这个仓库，访问地址就是 <code>https://你的用户名.github.io</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤 3 -->
+                <div class="step-card mb-12 p-8 rounded-xl border border-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            3
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">告诉 OpenClaw 你的需求</h2>
+                            <div class="text-text-dim space-y-4">
+                                <p>向 OpenClaw 描述你想要的个人主页：</p>
+                                <pre><code>"帮我创建一个个人主页，要求：
+1. 使用极深色背景（#050507）
+2. 纯白色文字，不要用彩色渐变
+3. 简洁的布局，类似 EasyClaw 风格
+4. 包含以下信息：
+   - 姓名：松石
+   - 身份：连续创业者
+   - 所在地：杭州
+   - 学历：浙江理工大学计算机硕士
+   - 技能：连续创业、运动营养、儒释道文化等
+   - 联系方式：微信、邮箱"</code></pre>
+                                
+                                <div class="tip">
+                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>描述越详细，OpenClaw 生成的页面越符合你的预期。可以强调"严格抄袭"某个网站的风格。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤 4 -->
+                <div class="step-card mb-12 p-8 rounded-xl border border-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            4
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">提供个人照片</h2>
+                            <div class="text-text-dim space-y-4">
+                                <p>将你的照片发送给 OpenClaw，它会自动：</p>
+                                <ul class="list-disc list-inside space-y-2 ml-4">
+                                    <li>保存照片到项目目录</li>
+                                    <li><strong class="text-white">压缩图片</strong>（保证清晰度同时减小文件大小）</li>
+                                    <li>更新 HTML 中的图片引用</li>
+                                    <li>提交并推送到 GitHub</li>
+                                </ul>
+                                
+                                <pre><code>示例照片处理：
+原始照片：4.3MB
+压缩后：18KB（头像）/ 50KB（照片预览）/ 85KB（高清大图）
+压缩率：99%+
+加载速度：从几秒变成毫秒</code></pre>
+                                
+                                <div class="tip">
+                                    <p class="text-text-dim"><strong class="text-white">💡 重要：</strong>图片一定要压缩！否则网页加载会很慢。但二维码等需要扫描的图片不要压缩太狠。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤 5 -->
+                <div class="step-card mb-12 p-8 rounded-xl border border-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            5
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">迭代优化</h2>
+                            <div class="text-text-dim space-y-4">
+                                <p>根据预览效果，不断提出修改意见：</p>
+                                <pre><code>常见修改需求：
+- "把导航栏删掉"
+- "照片比例失真了，修复一下"
+- "手机上改成左右滑动"
+- "联系我按钮改成弹出二维码"
+- "隐藏出生年份等隐私信息"
+- "缩短各个区域的间距"
+- "技能栈改成生活爱好"</code></pre>
+                                
+                                <div class="tip">
+                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>每次修改后，OpenClaw 会自动提交推送到 GitHub，你可以实时查看效果。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤 6 -->
+                <div class="step-card mb-12 p-8 rounded-xl border border-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            6
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">添加微信二维码</h2>
+                            <div class="text-text-dim space-y-4">
+                                <p>发送你的微信二维码给 OpenClaw：</p>
+                                <pre><code>"这是我的微信二维码，添加到联系我区域。
+要求：
+1. 不要压缩太狠，要保证清晰可扫
+2. 点击按钮弹出二维码大图
+3. 桌面端直接显示二维码"</code></pre>
+                                
+                                <p>OpenClaw 会：</p>
+                                <ul class="list-disc list-inside space-y-2 ml-4">
+                                    <li>保存二维码原图（保证清晰度）</li>
+                                    <li>创建弹窗组件</li>
+                                    <li>添加点击事件</li>
+                                    <li>优化移动端展示</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤 7 -->
+                <div class="step-card mb-12 p-8 rounded-xl border border-border">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            7
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">移动端优化</h2>
+                            <div class="text-text-dim space-y-4">
+                                <p>确保手机端体验良好：</p>
+                                <pre><code>移动端优化要点：
+- 技能栈：左右滑动展示
+- 兴趣爱好：左右滑动展示
+- 联系我：层叠卡片滑动
+- 图片：固定高度，object-cover 保持比例
+- 间距：适当缩小，减少滚动距离</code></pre>
+                                
+                                <div class="tip">
+                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>使用 Tailwind CSS 的响应式类（如<code>md:</code>、<code>lg:</code>）可以轻松实现桌面端和移动端的差异化布局。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 完成 -->
+                <div class="step-card mb-12 p-8 rounded-xl border border-orange bg-orange/5">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            ✓
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4 text-orange">完成！</h2>
+                            <div class="text-text-dim space-y-4">
+                                <p>现在你的个人主页已经上线了！访问 <code>https://你的用户名.github.io</code> 即可查看。</p>
+                                
+                                <div class="tip">
+                                    <p class="text-text-dim"><strong class="text-white">🎉 恭喜：</strong>你已经成功使用 OpenClaw 创建了一个专业的个人主页！整个过程只需要和 AI 对话，无需手动编写代码。</p>
+                                </div>
+                                
+                                <div class="mt-8 pt-8 border-t border-border">
+                                    <h3 class="text-xl font-bold mb-4 text-white">关键技术点总结</h3>
+                                    <ul class="list-disc list-inside space-y-2 ml-4">
+                                        <li><strong class="text-white">图片压缩：</strong>使用 System.Drawing 压缩，保证清晰度的同时减小 90%+ 体积</li>
+                                        <li><strong class="text-white">响应式设计：</strong>Tailwind CSS 实现桌面端和移动端自适应</li>
+                                        <li><strong class="text-white">滑动效果：</strong>CSS scroll-snap 实现流畅的左右滑动</li>
+                                        <li><strong class="text-white">弹窗组件：</strong>原生 JavaScript 实现照片和二维码弹窗</li>
+                                        <li><strong class="text-white">Git 自动化：</strong>OpenClaw 自动执行 git add/commit/push</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="py-8 border-t border-border">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-text-muted text-sm">
+                © 2026 松石 · 使用 OpenClaw 制作
+            </p>
+            <p class="text-text-muted text-sm mt-2">
+                <a href="index.html" class="text-orange hover:text-white transition-colors">返回个人主页</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 平滑滚动 -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
