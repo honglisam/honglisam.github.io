@@ -36,6 +36,54 @@
             border-color: #ffffff;
         }
         
+        /* 照片弹出效果 */
+        .photo-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .photo-modal.active {
+            display: flex;
+        }
+        .photo-modal img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .photo-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* 移动端滑动容器 */
+        .scroll-container {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 10px 0;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-item {
+            flex: 0 0 auto;
+            width: 280px;
+            scroll-snap-align: center;
+        }
+        
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -156,10 +204,12 @@
                         <i class="fas fa-images mr-2"></i>我的照片
                     </h3>
                     <div class="grid grid-cols-2 gap-4 mb-8">
-                        <img src="photo1-optimized.jpg" alt="洪礼" class="w-full rounded-lg border border-border">
-                        <img src="photo2-optimized.jpg" alt="洪礼" class="w-full rounded-lg border border-border">
+                        <img src="photo1-optimized.jpg" alt="洪礼" class="w-full rounded-lg border border-border cursor-pointer hover:opacity-80 transition-opacity" onclick="openModal('photo1-hd.jpg')">
+                        <img src="photo2-optimized.jpg" alt="洪礼" class="w-full rounded-lg border border-border cursor-pointer hover:opacity-80 transition-opacity" onclick="openModal('photo2-hd.jpg')">
                     </div>
-                    <h3 class="text-xl font-semibold mb-6 text-white">
+                    <p class="text-text-muted text-sm text-center">点击照片可查看大图</p>
+                    
+                    <h3 class="text-xl font-semibold mt-8 mb-6 text-white">
                         <i class="fas fa-graduation-cap mr-2"></i>教育背景
                     </h3>
                     <div class="space-y-6">
@@ -255,7 +305,7 @@
         </div>
     </section>
 
-    <!-- 兴趣爱好区域 -->
+    <!-- 兴趣爱好区域 - 移动端左右滑动 -->
     <section id="interests" class="py-24 bg-surface">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-6 text-white">
@@ -265,54 +315,95 @@
                 生活不止代码，还有诗和远方
             </p>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <!-- 桌面端：网格布局 -->
+            <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                 <div class="bg-bg p-6 rounded-xl border border-border text-center">
                     <div class="text-4xl text-white mb-4">⛰️</div>
                     <h3 class="font-semibold mb-2 text-white">爬山徒步</h3>
                     <p class="text-text-muted text-sm">每周 2 次，热爱大自然</p>
                 </div>
-                
                 <div class="bg-bg p-6 rounded-xl border border-border text-center">
                     <div class="text-4xl text-white mb-4">🏀</div>
                     <h3 class="font-semibold mb-2 text-white">篮球足球</h3>
                     <p class="text-text-muted text-sm">喜欢打篮球，爱看足球赛</p>
                 </div>
-                
                 <div class="bg-bg p-6 rounded-xl border border-border text-center">
                     <div class="text-4xl text-white mb-4">📚</div>
                     <h3 class="font-semibold mb-2 text-white">阅读学习</h3>
                     <p class="text-text-muted text-sm">营养学、中国文化、金融</p>
                 </div>
-                
                 <div class="bg-bg p-6 rounded-xl border border-border text-center">
                     <div class="text-4xl text-white mb-4">🎮</div>
                     <h3 class="font-semibold mb-2 text-white">Dota 游戏</h3>
                     <p class="text-text-muted text-sm">多年玩家，消磨时光</p>
                 </div>
-                
                 <div class="bg-bg p-6 rounded-xl border border-border text-center">
                     <div class="text-4xl text-white mb-4">🎬</div>
                     <h3 class="font-semibold mb-2 text-white">电影音乐</h3>
                     <p class="text-text-muted text-sm">美剧、好莱坞、李宗盛</p>
                 </div>
-                
                 <div class="bg-bg p-6 rounded-xl border border-border text-center">
                     <div class="text-4xl text-white mb-4">✈️</div>
                     <h3 class="font-semibold mb-2 text-white">旅游</h3>
                     <p class="text-text-muted text-sm">喜欢探索新地方</p>
                 </div>
-                
                 <div class="bg-bg p-6 rounded-xl border border-border text-center">
                     <div class="text-4xl text-white mb-4">📈</div>
                     <h3 class="font-semibold mb-2 text-white">金融炒股</h3>
                     <p class="text-text-muted text-sm">研究投资，学习理财</p>
                 </div>
-                
                 <div class="bg-bg p-6 rounded-xl border border-border text-center">
                     <div class="text-4xl text-white mb-4">🤖</div>
                     <h3 class="font-semibold mb-2 text-white">AI 技术</h3>
                     <p class="text-text-muted text-sm">AI Agent、Web Coding</p>
                 </div>
+            </div>
+            
+            <!-- 移动端：左右滑动 -->
+            <div class="md:hidden">
+                <div class="scroll-container px-6">
+                    <div class="scroll-item bg-bg p-6 rounded-xl border border-border text-center">
+                        <div class="text-4xl text-white mb-4">⛰️</div>
+                        <h3 class="font-semibold mb-2 text-white">爬山徒步</h3>
+                        <p class="text-text-muted text-sm">每周 2 次，热爱大自然</p>
+                    </div>
+                    <div class="scroll-item bg-bg p-6 rounded-xl border border-border text-center">
+                        <div class="text-4xl text-white mb-4">🏀</div>
+                        <h3 class="font-semibold mb-2 text-white">篮球足球</h3>
+                        <p class="text-text-muted text-sm">喜欢打篮球，爱看足球赛</p>
+                    </div>
+                    <div class="scroll-item bg-bg p-6 rounded-xl border border-border text-center">
+                        <div class="text-4xl text-white mb-4">📚</div>
+                        <h3 class="font-semibold mb-2 text-white">阅读学习</h3>
+                        <p class="text-text-muted text-sm">营养学、中国文化、金融</p>
+                    </div>
+                    <div class="scroll-item bg-bg p-6 rounded-xl border border-border text-center">
+                        <div class="text-4xl text-white mb-4">🎮</div>
+                        <h3 class="font-semibold mb-2 text-white">Dota 游戏</h3>
+                        <p class="text-text-muted text-sm">多年玩家，消磨时光</p>
+                    </div>
+                    <div class="scroll-item bg-bg p-6 rounded-xl border border-border text-center">
+                        <div class="text-4xl text-white mb-4">🎬</div>
+                        <h3 class="font-semibold mb-2 text-white">电影音乐</h3>
+                        <p class="text-text-muted text-sm">美剧、好莱坞、李宗盛</p>
+                    </div>
+                    <div class="scroll-item bg-bg p-6 rounded-xl border border-border text-center">
+                        <div class="text-4xl text-white mb-4">✈️</div>
+                        <h3 class="font-semibold mb-2 text-white">旅游</h3>
+                        <p class="text-text-muted text-sm">喜欢探索新地方</p>
+                    </div>
+                    <div class="scroll-item bg-bg p-6 rounded-xl border border-border text-center">
+                        <div class="text-4xl text-white mb-4">📈</div>
+                        <h3 class="font-semibold mb-2 text-white">金融炒股</h3>
+                        <p class="text-text-muted text-sm">研究投资，学习理财</p>
+                    </div>
+                    <div class="scroll-item bg-bg p-6 rounded-xl border border-border text-center">
+                        <div class="text-4xl text-white mb-4">🤖</div>
+                        <h3 class="font-semibold mb-2 text-white">AI 技术</h3>
+                        <p class="text-text-muted text-sm">AI Agent、Web Coding</p>
+                    </div>
+                </div>
+                <p class="text-text-muted text-sm text-center mt-4">← 左右滑动查看更多 →</p>
             </div>
         </div>
     </section>
@@ -375,6 +466,12 @@
         </div>
     </footer>
 
+    <!-- 照片弹出层 -->
+    <div class="photo-modal" id="photoModal" onclick="closeModal()">
+        <span class="photo-modal-close">&times;</span>
+        <img id="modalImage" src="" alt="大图预览">
+    </div>
+
     <!-- 平滑滚动 -->
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -388,6 +485,28 @@
                     });
                 }
             });
+        });
+        
+        // 照片弹出功能
+        function openModal(imageSrc) {
+            const modal = document.getElementById('photoModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('photoModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // ESC 键关闭弹出层
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
