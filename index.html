@@ -120,11 +120,11 @@
                 
                 <div class="flex flex-wrap gap-4 justify-center mb-12">
                     <button onclick="openWechatModal()" class="px-8 py-3 bg-white text-bg hover:bg-text-dim rounded-lg font-medium transition-all transform hover:-translate-y-1">
-                        <i class="fas fa-paper-plane mr-2"></i>联系我
+                        <i class="fas fa-qrcode mr-2"></i>手机号
                     </button>
-                    <a href="https://github.com/honglisam" target="_blank" class="px-8 py-3 bg-surface border border-border hover:border-white rounded-lg font-medium transition-all transform hover:-translate-y-1">
-                        <i class="fab fa-github mr-2"></i>GitHub
-                    </a>
+                    <button onclick="openEmailModal()" class="px-8 py-3 bg-surface border border-border hover:border-white rounded-lg font-medium transition-all transform hover:-translate-y-1">
+                        <i class="fas fa-envelope mr-2"></i>邮箱
+                    </button>
                 </div>
                 
                 <div class="flex gap-6 justify-center text-2xl">
@@ -426,52 +426,12 @@
                 有工作机会、项目合作或想交个朋友？欢迎联系我！
             </p>
             
-            <!-- 桌面端：网格布局 -->
-            <div class="hidden md:grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold mb-2 text-white">邮箱</h3>
-                    <a href="mailto:hongli272009@gmail.com" class="text-text-dim hover:text-white transition-colors">
-                        hongli272009@gmail.com
-                    </a>
-                </div>
-                
-                <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold mb-2 text-white">GitHub</h3>
-                    <a href="https://github.com/honglisam" target="_blank" class="text-text-dim hover:text-white transition-colors">
-                        @honglisam
-                    </a>
-                </div>
-                
-                <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold mb-2 text-white">微信</h3>
-                    <img src="wechat-qr-optimized.jpg" alt="微信二维码" class="w-32 h-32 mx-auto mt-2 rounded-lg border border-border">
-                    <p class="text-text-dim text-xs mt-2">扫一扫，加松石微信</p>
-                </div>
-                
-                <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold mb-2 text-white">位置</h3>
-                    <p class="text-text-dim">中国 · 杭州</p>
+            <!-- 桌面端：微信二维码直接显示 -->
+            <div class="max-w-md mx-auto">
+                <div class="bg-surface p-8 rounded-xl border border-border text-center">
+                    <h3 class="font-semibold mb-4 text-white text-xl">扫一扫，加松石微信</h3>
+                    <img src="wechat-qr-hd.jpg" alt="微信二维码" class="w-64 h-64 mx-auto rounded-lg border border-border">
+                    <p class="text-text-dim text-sm mt-4">清晰扫码，即刻添加</p>
                 </div>
             </div>
             
@@ -479,57 +439,27 @@
             <div class="photo-modal" id="wechatModal" onclick="closeWechatModal()">
                 <span class="photo-modal-close">&times;</span>
                 <div class="text-center">
-                    <img src="wechat-qr-optimized.jpg" alt="微信二维码" class="max-w-md mx-auto rounded-lg shadow-2xl">
+                    <img src="wechat-qr-hd.jpg" alt="微信二维码" class="max-w-md mx-auto rounded-lg shadow-2xl">
                     <p class="text-white mt-4 text-lg">扫一扫，加松石微信</p>
                 </div>
             </div>
             
-            <!-- 移动端：层叠卡片滑动 -->
-            <div class="md:hidden">
-                <div class="scroll-container px-6">
-                    <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold mb-2 text-white">邮箱</h3>
-                        <a href="mailto:hongli272009@gmail.com" class="text-text-dim hover:text-white transition-colors block">
-                            hongli272009@gmail.com
-                        </a>
+            <!-- 邮箱弹窗 -->
+            <div class="photo-modal" id="emailModal" onclick="closeEmailModal()">
+                <span class="photo-modal-close">&times;</span>
+                <div class="text-center bg-surface p-12 rounded-xl border border-border">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-white/10 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
                     </div>
-                    <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold mb-2 text-white">GitHub</h3>
-                        <a href="https://github.com/honglisam" target="_blank" class="text-text-dim hover:text-white transition-colors block">
-                            @honglisam
-                        </a>
-                    </div>
-                    <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold mb-2 text-white">微信</h3>
-                        <p class="text-text-dim text-sm">扫码加好友</p>
-                    </div>
-                    <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold mb-2 text-white">位置</h3>
-                        <p class="text-text-dim">中国 · 杭州</p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">邮箱联系</h3>
+                    <p class="text-text-dim mb-6">发送邮件至：</p>
+                    <a href="mailto:hongli272009@gmail.com" class="text-3xl font-bold text-orange hover:text-white transition-colors block mb-6">
+                        hongli272009@gmail.com
+                    </a>
+                    <p class="text-text-muted text-sm">点击邮箱地址即可发送邮件</p>
                 </div>
-                <p class="text-text-muted text-sm text-center mt-4">← 左右滑动查看更多 →</p>
             </div>
             
             <div class="text-center mt-12">
@@ -591,6 +521,7 @@
             if (e.key === 'Escape') {
                 closeModal();
                 closeWechatModal();
+                closeEmailModal();
             }
         });
         
@@ -603,6 +534,19 @@
         
         function closeWechatModal() {
             const modal = document.getElementById('wechatModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // 邮箱弹窗功能
+        function openEmailModal() {
+            const modal = document.getElementById('emailModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeEmailModal() {
+            const modal = document.getElementById('emailModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
