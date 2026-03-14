@@ -427,7 +427,7 @@
             </p>
             
             <!-- 桌面端：网格布局 -->
-            <div class="hidden md:grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="hidden md:grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
                     <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -454,6 +454,16 @@
                 
                 <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
                     <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-white">微信</h3>
+                    <p class="text-text-dim cursor-pointer hover:text-white" onclick="openWechatModal()">点击显示二维码</p>
+                </div>
+                
+                <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -461,6 +471,15 @@
                     </div>
                     <h3 class="font-semibold mb-2 text-white">位置</h3>
                     <p class="text-text-dim">中国 · 杭州</p>
+                </div>
+            </div>
+            
+            <!-- 微信二维码弹窗 -->
+            <div class="photo-modal" id="wechatModal" onclick="closeWechatModal()">
+                <span class="photo-modal-close">&times;</span>
+                <div class="text-center">
+                    <img src="wechat-qr-optimized.jpg" alt="微信二维码" class="max-w-md mx-auto rounded-lg shadow-2xl">
+                    <p class="text-white mt-4 text-lg">扫一扫，加松石微信</p>
                 </div>
             </div>
             
@@ -488,6 +507,15 @@
                         <a href="https://github.com/honglisam" target="_blank" class="text-text-dim hover:text-white transition-colors block">
                             @honglisam
                         </a>
+                    </div>
+                    <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center shadow-lg">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2 text-white">微信</h3>
+                        <p class="text-text-dim text-sm cursor-pointer hover:text-white" onclick="openWechatModal()">点击显示二维码</p>
                     </div>
                     <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
                         <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center shadow-lg">
@@ -561,8 +589,22 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
+                closeWechatModal();
             }
         });
+        
+        // 微信二维码弹出功能
+        function openWechatModal() {
+            const modal = document.getElementById('wechatModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeWechatModal() {
+            const modal = document.getElementById('wechatModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     </script>
 </body>
 </html>
