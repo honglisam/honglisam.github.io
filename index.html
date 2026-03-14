@@ -119,9 +119,9 @@
                 </p>
                 
                 <div class="flex flex-wrap gap-4 justify-center mb-12">
-                    <a href="#contact" class="px-8 py-3 bg-white text-bg hover:bg-text-dim rounded-lg font-medium transition-all transform hover:-translate-y-1">
+                    <button onclick="openWechatModal()" class="px-8 py-3 bg-white text-bg hover:bg-text-dim rounded-lg font-medium transition-all transform hover:-translate-y-1">
                         <i class="fas fa-paper-plane mr-2"></i>联系我
-                    </a>
+                    </button>
                     <a href="https://github.com/honglisam" target="_blank" class="px-8 py-3 bg-surface border border-border hover:border-white rounded-lg font-medium transition-all transform hover:-translate-y-1">
                         <i class="fab fa-github mr-2"></i>GitHub
                     </a>
@@ -459,7 +459,8 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold mb-2 text-white">微信</h3>
-                    <p class="text-text-dim cursor-pointer hover:text-white" onclick="openWechatModal()">点击显示二维码</p>
+                    <img src="wechat-qr-optimized.jpg" alt="微信二维码" class="w-32 h-32 mx-auto mt-2 rounded-lg border border-border">
+                    <p class="text-text-dim text-xs mt-2">扫一扫，加松石微信</p>
                 </div>
                 
                 <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
@@ -515,7 +516,7 @@
                             </svg>
                         </div>
                         <h3 class="font-semibold mb-2 text-white">微信</h3>
-                        <p class="text-text-dim text-sm cursor-pointer hover:text-white" onclick="openWechatModal()">点击显示二维码</p>
+                        <p class="text-text-dim text-sm">扫码加好友</p>
                     </div>
                     <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
                         <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center shadow-lg">
