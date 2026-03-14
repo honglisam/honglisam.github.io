@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>使用 OpenClaw 制作个人主页 - 完整教程</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@6.4.0/css/all.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -15,8 +16,7 @@
                         border: '#1a1a24',
                         text: '#ffffff',
                         'text-dim': '#a1a1aa',
-                        'text-muted': '#71717a',
-                        orange: '#f97316'
+                        'text-muted': '#71717a'
                     }
                 }
             }
@@ -28,12 +28,26 @@
             color: #ffffff;
         }
         
-        .step-card {
+        .card-hover {
             transition: all 0.3s ease;
         }
-        .step-card:hover {
-            transform: translateY(-2px);
-            border-color: #f97316;
+        .card-hover:hover {
+            transform: translateY(-4px);
+            border-color: #ffffff;
+        }
+        
+        .chat-message {
+            border-left: 3px solid #1a1a24;
+            padding-left: 16px;
+            margin: 16px 0;
+        }
+        
+        .chat-user {
+            border-left-color: #f97316;
+        }
+        
+        .chat-assistant {
+            border-left-color: #71717a;
         }
         
         code {
@@ -56,10 +70,40 @@
             padding: 0;
         }
         
-        .tip {
-            border-left: 4px solid #f97316;
-            padding-left: 16px;
-            margin: 16px 0;
+        .timeline-item {
+            position: relative;
+            padding-left: 32px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #f97316;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 5px;
+            top: 24px;
+            bottom: 0;
+            width: 2px;
+            background: #1a1a24;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a1a24;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -67,22 +111,25 @@
     <!-- 导航栏 -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-bg/80 backdrop-blur-md border-b border-border">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold text-white hover:text-orange transition-colors">
-                ← 返回个人主页
-            </a>
-            <a href="#start" class="px-5 py-2 bg-orange hover:bg-orange-hover rounded-lg text-sm font-medium transition-colors">
-                开始学习
+            <a href="index.html" class="text-xl font-bold text-white">HL</a>
+            <div class="hidden md:flex space-x-8 text-sm">
+                <a href="#start" class="text-text-dim hover:text-white transition-colors">开始</a>
+                <a href="#chat" class="text-text-dim hover:text-white transition-colors">聊天记录</a>
+                <a href="#summary" class="text-text-dim hover:text-white transition-colors">步骤总结</a>
+            </div>
+            <a href="index.html" class="px-5 py-2 bg-white text-bg hover:bg-text-dim rounded-lg text-sm font-medium transition-colors">
+                返回主页
             </a>
         </div>
     </nav>
 
     <!-- 标题区域 -->
-    <section class="min-h-[60vh] flex items-center justify-center pt-20">
+    <section class="min-h-[70vh] flex items-center justify-center pt-20">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="mb-8">
-                    <div class="inline-block px-4 py-2 bg-orange/10 border border-orange rounded-full text-orange text-sm mb-6">
-                        🎯 OpenClaw 实战教程
+                    <div class="inline-block px-4 py-2 bg-surface border border-border rounded-full text-text-dim text-sm mb-6">
+                        📖 OpenClaw 实战教程
                     </div>
                 </div>
                 
@@ -90,244 +137,373 @@
                     使用 OpenClaw<br>制作个人主页
                 </h1>
                 
-                <p class="text-xl text-text-dim mb-8">
+                <p class="text-xl text-text-dim mb-4">
                     从零开始，30 分钟打造你的专属个人主页
                 </p>
                 
-                <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="#start" class="px-8 py-3 bg-orange hover:bg-orange-hover rounded-lg font-medium transition-all">
-                        开始学习
+                <p class="text-lg text-text-muted mb-12">
+                    📍 基于真实聊天记录整理 · 完整步骤 · 可直接复制
+                </p>
+                
+                <div class="flex flex-wrap gap-4 justify-center mb-12">
+                    <a href="#start" class="px-8 py-3 bg-white text-bg hover:bg-text-dim rounded-lg font-medium transition-all transform hover:-translate-y-1">
+                        <i class="fas fa-play mr-2"></i>开始学习
                     </a>
-                    <a href="https://github.com/honglisam/honglisam.github.io" target="_blank" class="px-8 py-3 bg-surface border border-border hover:border-white rounded-lg font-medium transition-all">
-                        查看源码
+                    <a href="https://github.com/honglisam/honglisam.github.io" target="_blank" class="px-8 py-3 bg-surface border border-border hover:border-white rounded-lg font-medium transition-all transform hover:-translate-y-1">
+                        <i class="fab fa-github mr-2"></i>查看源码
+                    </a>
+                </div>
+                
+                <div class="flex gap-6 justify-center text-2xl">
+                    <a href="index.html" class="text-text-dim hover:text-white transition-colors">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <a href="#chat" class="text-text-dim hover:text-white transition-colors">
+                        <i class="fas fa-comments"></i>
+                    </a>
+                    <a href="#summary" class="text-text-dim hover:text-white transition-colors">
+                        <i class="fas fa-list-check"></i>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 教程内容 -->
-    <section id="start" class="py-24 bg-surface">
+    <!-- 教程简介 -->
+    <section id="start" class="py-16 bg-surface">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
-                <!-- 步骤 1 -->
-                <div class="step-card mb-12 p-8 rounded-xl border border-border">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">
+                    教程简介
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-bg p-6 rounded-xl border border-border text-center card-hover">
+                        <div class="text-4xl text-white mb-4">⏱️</div>
+                        <h3 class="font-semibold mb-2 text-white">30 分钟</h3>
+                        <p class="text-text-muted text-sm">从零到上线的完整时间</p>
+                    </div>
+                    <div class="bg-bg p-6 rounded-xl border border-border text-center card-hover">
+                        <div class="text-4xl text-white mb-4">💬</div>
+                        <h3 class="font-semibold mb-2 text-white">纯对话</h3>
+                        <p class="text-text-muted text-sm">无需手动编写代码</p>
+                    </div>
+                    <div class="bg-bg p-6 rounded-xl border border-border text-center card-hover">
+                        <div class="text-4xl text-white mb-4">🚀</div>
+                        <h3 class="font-semibold mb-2 text-white">自动部署</h3>
+                        <p class="text-text-muted text-sm">GitHub Pages 自动托管</p>
+                    </div>
+                </div>
+                
+                <div class="bg-bg p-8 rounded-xl border border-border">
+                    <h3 class="text-xl font-semibold mb-4 text-white">
+                        <i class="fas fa-lightbulb mr-2 text-orange"></i>什么是 OpenClaw？
+                    </h3>
+                    <p class="text-text-dim mb-4 leading-relaxed">
+                        OpenClaw 是一个强大的 AI 助手，可以帮你自动完成代码编写、图片压缩、Git 推送等操作。
+                        你只需要用自然语言描述需求，它就能帮你实现。
+                    </p>
+                    <p class="text-text-dim leading-relaxed">
+                        本教程基于真实的制作过程整理，包含了完整的聊天记录和关键步骤，
+                        你可以直接复制对话内容，快速制作出自己的个人主页。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聊天记录 -->
+    <section id="chat" class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-6 text-white">
+                    完整聊天记录
+                </h2>
+                <p class="text-text-dim text-center mb-16 max-w-2xl mx-auto">
+                    以下是制作个人主页的完整对话过程，按时间顺序整理
+                </p>
+                
+                <!-- 阶段 1：创建基础页面 -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-orange flex items-center justify-center text-white font-bold">
                             1
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-bold mb-4">准备工作</h2>
-                            <div class="text-text-dim space-y-4">
-                                <p>在开始之前，你需要准备以下工具：</p>
-                                <ul class="list-disc list-inside space-y-2 ml-4">
-                                    <li>已安装 <strong class="text-white">OpenClaw</strong>（AI 助手）</li>
-                                    <li>已注册 <strong class="text-white">GitHub</strong> 账号</li>
-                                    <li>准备好个人照片（头像、生活照等）</li>
-                                    <li>准备好个人信息（姓名、简介、技能等）</li>
-                                </ul>
-                                
-                                <div class="tip">
-                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>OpenClaw 是一个强大的 AI 助手，可以帮你自动完成代码编写、图片压缩、Git 推送等操作。</p>
-                                </div>
-                            </div>
+                        <h3 class="text-2xl font-bold text-white">创建基础页面</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="chat-message chat-user">
+                            <p class="text-text-dim mb-2"><i class="fas fa-user mr-2"></i><strong class="text-white">主人</strong></p>
+                            <p class="text-text-dim">让你完成那个个人主页，完成的怎么样？</p>
+                        </div>
+                        
+                        <div class="chat-message chat-assistant">
+                            <p class="text-text-dim mb-2"><i class="fas fa-robot mr-2"></i><strong class="text-white">OpenClaw</strong></p>
+                            <p class="text-text-dim">个人主页已经完成了！GitHub 仓库：https://github.com/honglisam/honglisam.github.io，访问地址：https://honglisam.github.io</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- 步骤 2 -->
-                <div class="step-card mb-12 p-8 rounded-xl border border-border">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                
+                <!-- 阶段 2：严格抄袭 EasyClaw 风格 -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-orange flex items-center justify-center text-white font-bold">
                             2
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-bold mb-4">创建 GitHub 仓库</h2>
-                            <div class="text-text-dim space-y-4">
-                                <p>1. 登录 GitHub，创建新仓库</p>
-                                <pre><code>仓库名称：你的用户名.github.io
-例如：honglisam.github.io</code></pre>
-                                
-                                <p>2. 克隆仓库到本地</p>
-                                <pre><code>git clone https://github.com/你的用户名/你的用户名.github.io.git
-cd 你的用户名.github.io</code></pre>
-                                
-                                <div class="tip">
-                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>GitHub Pages 会自动部署这个仓库，访问地址就是 <code>https://你的用户名.github.io</code></p>
-                                </div>
-                            </div>
+                        <h3 class="text-2xl font-bold text-white">严格抄袭 EasyClaw 风格</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="chat-message chat-user">
+                            <p class="text-text-dim mb-2"><i class="fas fa-user mr-2"></i><strong class="text-white">主人</strong></p>
+                            <p class="text-text-dim">你为什么不按照我的指令呢？我让你完全抄袭那个 easy Claw 的风格。它有黄色的字吗？它的字都是白色的。你看到了吗？</p>
+                        </div>
+                        
+                        <div class="bg-bg p-6 rounded-lg border border-border mt-4">
+                            <p class="text-orange text-sm mb-2"><i class="fas fa-lightbulb mr-2"></i>关键要点：</p>
+                            <ul class="list-disc list-inside text-text-dim space-y-1 ml-4">
+                                <li>完全抄袭 EasyClaw 的配色方案</li>
+                                <li>所有文字使用纯白色（#ffffff），不要用橙色渐变</li>
+                                <li>背景使用极深色（#050507）</li>
+                                <li>按钮使用白色背景 + 深色文字</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-
-                <!-- 步骤 3 -->
-                <div class="step-card mb-12 p-8 rounded-xl border border-border">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                
+                <!-- 阶段 3：添加个人照片 -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-orange flex items-center justify-center text-white font-bold">
                             3
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-bold mb-4">告诉 OpenClaw 你的需求</h2>
-                            <div class="text-text-dim space-y-4">
-                                <p>向 OpenClaw 描述你想要的个人主页：</p>
-                                <pre><code>"帮我创建一个个人主页，要求：
-1. 使用极深色背景（#050507）
-2. 纯白色文字，不要用彩色渐变
-3. 简洁的布局，类似 EasyClaw 风格
-4. 包含以下信息：
-   - 姓名：松石
-   - 身份：连续创业者
-   - 所在地：杭州
-   - 学历：浙江理工大学计算机硕士
-   - 技能：连续创业、运动营养、儒释道文化等
-   - 联系方式：微信、邮箱"</code></pre>
-                                
-                                <div class="tip">
-                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>描述越详细，OpenClaw 生成的页面越符合你的预期。可以强调"严格抄袭"某个网站的风格。</p>
-                                </div>
-                            </div>
+                        <h3 class="text-2xl font-bold text-white">添加个人照片</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="chat-message chat-user">
+                            <p class="text-text-dim mb-2"><i class="fas fa-user mr-2"></i><strong class="text-white">主人</strong></p>
+                            <p class="text-text-dim">这是我的个人照片，添加到网页上</p>
+                        </div>
+                        
+                        <div class="chat-message chat-assistant">
+                            <p class="text-text-dim mb-2"><i class="fas fa-robot mr-2"></i><strong class="text-white">OpenClaw</strong></p>
+                            <p class="text-text-dim">好的！照片已保存并添加到"关于我"区域。为了保证加载速度，我已经压缩了照片：</p>
+                            <pre><code>原始照片：3.4MB
+压缩后：50KB（预览）/ 85KB（高清大图）
+压缩率：98.5%</code></pre>
+                        </div>
+                        
+                        <div class="bg-bg p-6 rounded-lg border border-border mt-4">
+                            <p class="text-orange text-sm mb-2"><i class="fas fa-lightbulb mr-2"></i>图片压缩原则：</p>
+                            <ul class="list-disc list-inside text-text-dim space-y-1 ml-4">
+                                <li>所有网页图片都要压缩，保证清晰度的同时减小文件大小</li>
+                                <li>头像：400x400，18KB</li>
+                                <li>照片预览：800x800，50KB</li>
+                                <li>照片大图：1200x1200，85KB</li>
+                                <li><strong class="text-white">例外：</strong>微信二维码不要压缩太狠，要保证可扫（65KB）</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-
-                <!-- 步骤 4 -->
-                <div class="step-card mb-12 p-8 rounded-xl border border-border">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                
+                <!-- 阶段 4：移动端优化 -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-orange flex items-center justify-center text-white font-bold">
                             4
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-bold mb-4">提供个人照片</h2>
-                            <div class="text-text-dim space-y-4">
-                                <p>将你的照片发送给 OpenClaw，它会自动：</p>
-                                <ul class="list-disc list-inside space-y-2 ml-4">
-                                    <li>保存照片到项目目录</li>
-                                    <li><strong class="text-white">压缩图片</strong>（保证清晰度同时减小文件大小）</li>
-                                    <li>更新 HTML 中的图片引用</li>
-                                    <li>提交并推送到 GitHub</li>
-                                </ul>
-                                
-                                <pre><code>示例照片处理：
-原始照片：4.3MB
-压缩后：18KB（头像）/ 50KB（照片预览）/ 85KB（高清大图）
-压缩率：99%+
-加载速度：从几秒变成毫秒</code></pre>
-                                
-                                <div class="tip">
-                                    <p class="text-text-dim"><strong class="text-white">💡 重要：</strong>图片一定要压缩！否则网页加载会很慢。但二维码等需要扫描的图片不要压缩太狠。</p>
-                                </div>
-                            </div>
+                        <h3 class="text-2xl font-bold text-white">移动端优化</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="chat-message chat-user">
+                            <p class="text-text-dim mb-2"><i class="fas fa-user mr-2"></i><strong class="text-white">主人</strong></p>
+                            <p class="text-text-dim">手机上打开，兴趣爱好那里往下滑要拉很长。能不能改成左右滑动那种？</p>
+                        </div>
+                        
+                        <div class="chat-message chat-assistant">
+                            <p class="text-text-dim mb-2"><i class="fas fa-robot mr-2"></i><strong class="text-white">OpenClaw</strong></p>
+                            <p class="text-text-dim">好的！已将兴趣爱好改为移动端左右滑动：</p>
+                            <pre><code>桌面端：4 列网格布局
+移动端：横向滑动，每次显示 1 个卡片
+卡片宽度：280px
+底部提示：← 左右滑动查看更多 →</code></pre>
+                        </div>
+                        
+                        <div class="bg-bg p-6 rounded-lg border border-border mt-4">
+                            <p class="text-orange text-sm mb-2"><i class="fas fa-lightbulb mr-2"></i>移动端优化要点：</p>
+                            <ul class="list-disc list-inside text-text-dim space-y-1 ml-4">
+                                <li>技能栈：左右滑动</li>
+                                <li>兴趣爱好：左右滑动</li>
+                                <li>联系我：层叠卡片滑动</li>
+                                <li>照片：固定高度，object-cover 保持比例</li>
+                                <li>间距：适当缩小，减少滚动距离</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-
-                <!-- 步骤 5 -->
-                <div class="step-card mb-12 p-8 rounded-xl border border-border">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                
+                <!-- 阶段 5：添加微信二维码 -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-orange flex items-center justify-center text-white font-bold">
                             5
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-bold mb-4">迭代优化</h2>
-                            <div class="text-text-dim space-y-4">
-                                <p>根据预览效果，不断提出修改意见：</p>
-                                <pre><code>常见修改需求：
-- "把导航栏删掉"
-- "照片比例失真了，修复一下"
-- "手机上改成左右滑动"
-- "联系我按钮改成弹出二维码"
-- "隐藏出生年份等隐私信息"
-- "缩短各个区域的间距"
-- "技能栈改成生活爱好"</code></pre>
-                                
-                                <div class="tip">
-                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>每次修改后，OpenClaw 会自动提交推送到 GitHub，你可以实时查看效果。</p>
-                                </div>
-                            </div>
+                        <h3 class="text-2xl font-bold text-white">添加微信二维码</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="chat-message chat-user">
+                            <p class="text-text-dim mb-2"><i class="fas fa-user mr-2"></i><strong class="text-white">主人</strong></p>
+                            <p class="text-text-dim">这是我的微信二维码，当用户点击联系我时，把这个二维码弹出来</p>
+                        </div>
+                        
+                        <div class="chat-message chat-assistant">
+                            <p class="text-text-dim mb-2"><i class="fas fa-robot mr-2"></i><strong class="text-white">OpenClaw</strong></p>
+                            <p class="text-text-dim">好的！微信二维码已添加：</p>
+                            <pre><code>功能：
+- 点击"联系我"按钮弹出二维码
+- 黑色背景全屏展示
+- 点击空白处或按 ESC 关闭
+- 右上角×关闭按钮</code></pre>
+                        </div>
+                        
+                        <div class="bg-bg p-6 rounded-lg border border-border mt-4">
+                            <p class="text-orange text-sm mb-2"><i class="fas fa-lightbulb mr-2"></i>二维码处理：</p>
+                            <ul class="list-disc list-inside text-text-dim space-y-1 ml-4">
+                                <li>使用原图（215KB），保证清晰可扫</li>
+                                <li>不要压缩太狠，否则无法识别</li>
+                                <li>弹窗显示高清大图</li>
+                                <li>桌面端直接显示二维码缩略图</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-
-                <!-- 步骤 6 -->
-                <div class="step-card mb-12 p-8 rounded-xl border border-border">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                
+                <!-- 阶段 6：修改个人信息 -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-orange flex items-center justify-center text-white font-bold">
                             6
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-bold mb-4">添加微信二维码</h2>
-                            <div class="text-text-dim space-y-4">
-                                <p>发送你的微信二维码给 OpenClaw：</p>
-                                <pre><code>"这是我的微信二维码，添加到联系我区域。
-要求：
-1. 不要压缩太狠，要保证清晰可扫
-2. 点击按钮弹出二维码大图
-3. 桌面端直接显示二维码"</code></pre>
-                                
-                                <p>OpenClaw 会：</p>
-                                <ul class="list-disc list-inside space-y-2 ml-4">
-                                    <li>保存二维码原图（保证清晰度）</li>
-                                    <li>创建弹窗组件</li>
-                                    <li>添加点击事件</li>
-                                    <li>优化移动端展示</li>
-                                </ul>
-                            </div>
+                        <h3 class="text-2xl font-bold text-white">修改个人信息</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="chat-message chat-user">
+                            <p class="text-text-dim mb-2"><i class="fas fa-user mr-2"></i><strong class="text-white">主人</strong></p>
+                            <p class="text-text-dim">洪礼改成松石，这是我的花名。Java 开发工程师改成连续创业者，关于我的描述也改成创业相关的</p>
+                        </div>
+                        
+                        <div class="chat-message chat-assistant">
+                            <p class="text-text-dim mb-2"><i class="fas fa-robot mr-2"></i><strong class="text-white">OpenClaw</strong></p>
+                            <p class="text-text-dim">好的！已全部修改：</p>
+                            <pre><code>修改内容：
+- 姓名：洪礼 → 松石
+- 身份：Java 开发工程师 → 连续创业者
+- 技能栈：Java 开发 → 连续创业
+- 关于我：重新生成创业相关描述
+- 工作经历 → 创业经历</code></pre>
                         </div>
                     </div>
                 </div>
-
-                <!-- 步骤 7 -->
-                <div class="step-card mb-12 p-8 rounded-xl border border-border">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                
+                <!-- 阶段 7：技能栈改为生活爱好 -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-orange flex items-center justify-center text-white font-bold">
                             7
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-bold mb-4">移动端优化</h2>
-                            <div class="text-text-dim space-y-4">
-                                <p>确保手机端体验良好：</p>
-                                <pre><code>移动端优化要点：
-- 技能栈：左右滑动展示
-- 兴趣爱好：左右滑动展示
-- 联系我：层叠卡片滑动
-- 图片：固定高度，object-cover 保持比例
-- 间距：适当缩小，减少滚动距离</code></pre>
-                                
-                                <div class="tip">
-                                    <p class="text-text-dim"><strong class="text-white">💡 提示：</strong>使用 Tailwind CSS 的响应式类（如<code>md:</code>、<code>lg:</code>）可以轻松实现桌面端和移动端的差异化布局。</p>
-                                </div>
-                            </div>
+                        <h3 class="text-2xl font-bold text-white">技能栈改为生活爱好</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="chat-message chat-user">
+                            <p class="text-text-dim mb-2"><i class="fas fa-user mr-2"></i><strong class="text-white">主人</strong></p>
+                            <p class="text-text-dim">数据库换成运动营养爱好者，Web 开发换成儒释道文化爱好者，DevOps 换成美食达人，云服务换成金融投资</p>
+                        </div>
+                        
+                        <div class="chat-message chat-assistant">
+                            <p class="text-text-dim mb-2"><i class="fas fa-robot mr-2"></i><strong class="text-white">OpenClaw</strong></p>
+                            <p class="text-text-dim">好的！技能栈已改为生活爱好：</p>
+                            <pre><code>🏃 运动营养爱好者
+   研究运动营养学、膳食营养，阅读《控糖革命》《超越百岁》等
+
+📖 儒释道文化爱好者
+   热爱中国传统文化，研读儒释道经典，修身养性
+
+🍜 美食达人
+   徽菜爱好者，偏爱重口味，钟爱黄山臭鳜鱼、毛豆腐
+
+📈 金融投资
+   研究炒股理财，学习金融知识，关注市场动态</code></pre>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- 完成 -->
-                <div class="step-card mb-12 p-8 rounded-xl border border-orange bg-orange/5">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-orange flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-                            ✓
-                        </div>
-                        <div>
-                            <h2 class="text-2xl font-bold mb-4 text-orange">完成！</h2>
-                            <div class="text-text-dim space-y-4">
-                                <p>现在你的个人主页已经上线了！访问 <code>https://你的用户名.github.io</code> 即可查看。</p>
-                                
-                                <div class="tip">
-                                    <p class="text-text-dim"><strong class="text-white">🎉 恭喜：</strong>你已经成功使用 OpenClaw 创建了一个专业的个人主页！整个过程只需要和 AI 对话，无需手动编写代码。</p>
-                                </div>
-                                
-                                <div class="mt-8 pt-8 border-t border-border">
-                                    <h3 class="text-xl font-bold mb-4 text-white">关键技术点总结</h3>
-                                    <ul class="list-disc list-inside space-y-2 ml-4">
-                                        <li><strong class="text-white">图片压缩：</strong>使用 System.Drawing 压缩，保证清晰度的同时减小 90%+ 体积</li>
-                                        <li><strong class="text-white">响应式设计：</strong>Tailwind CSS 实现桌面端和移动端自适应</li>
-                                        <li><strong class="text-white">滑动效果：</strong>CSS scroll-snap 实现流畅的左右滑动</li>
-                                        <li><strong class="text-white">弹窗组件：</strong>原生 JavaScript 实现照片和二维码弹窗</li>
-                                        <li><strong class="text-white">Git 自动化：</strong>OpenClaw 自动执行 git add/commit/push</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+    <!-- 步骤总结 -->
+    <section id="summary" class="py-16 bg-surface">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-6 text-white">
+                    步骤总结
+                </h2>
+                <p class="text-text-dim text-center mb-16 max-w-2xl mx-auto">
+                    快速回顾整个制作流程
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="timeline-item">
+                        <div class="timeline-line"></div>
+                        <h3 class="text-xl font-bold mb-2 text-white">步骤 1：准备 GitHub 仓库</h3>
+                        <p class="text-text-dim">创建用户名.github.io 仓库，启用 GitHub Pages</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-line"></div>
+                        <h3 class="text-xl font-bold mb-2 text-white">步骤 2：告诉 OpenClaw 需求</h3>
+                        <p class="text-text-dim">描述想要的风格、颜色、布局、内容</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-line"></div>
+                        <h3 class="text-xl font-bold mb-2 text-white">步骤 3：提供个人照片</h3>
+                        <p class="text-text-dim">发送照片，OpenClaw 自动压缩并添加</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-line"></div>
+                        <h3 class="text-xl font-bold mb-2 text-white">步骤 4：迭代优化</h3>
+                        <p class="text-text-dim">根据预览效果，提出修改意见（颜色、布局、间距等）</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-line"></div>
+                        <h3 class="text-xl font-bold mb-2 text-white">步骤 5：添加微信二维码</h3>
+                        <p class="text-text-dim">发送二维码，添加弹窗功能</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-line"></div>
+                        <h3 class="text-xl font-bold mb-2 text-white">步骤 6：移动端优化</h3>
+                        <p class="text-text-dim">改为左右滑动布局，优化手机体验</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-line"></div>
+                        <h3 class="text-xl font-bold mb-2 text-white">步骤 7：修改个人信息</h3>
+                        <p class="text-text-dim">更新姓名、身份、技能、描述等</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-line" style="display:none"></div>
+                        <h3 class="text-xl font-bold mb-2 text-white">完成！</h3>
+                        <p class="text-text-dim">访问 https://你的用户名.github.io 查看效果</p>
                     </div>
                 </div>
             </div>
@@ -341,7 +517,7 @@ cd 你的用户名.github.io</code></pre>
                 © 2026 松石 · 使用 OpenClaw 制作
             </p>
             <p class="text-text-muted text-sm mt-2">
-                <a href="index.html" class="text-orange hover:text-white transition-colors">返回个人主页</a>
+                <a href="index.html" class="text-text-dim hover:text-white transition-colors">返回个人主页</a>
             </p>
         </div>
     </footer>
