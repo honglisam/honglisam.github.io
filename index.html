@@ -97,25 +97,8 @@
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- 导航栏 -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-bg/80 backdrop-blur-md border-b border-border">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold text-white">HL</div>
-            <div class="hidden md:flex space-x-8 text-sm">
-                <a href="#home" class="text-text-dim hover:text-white transition-colors">首页</a>
-                <a href="#about" class="text-text-dim hover:text-white transition-colors">关于</a>
-                <a href="#skills" class="text-text-dim hover:text-white transition-colors">技能</a>
-                <a href="#interests" class="text-text-dim hover:text-white transition-colors">兴趣</a>
-                <a href="#contact" class="text-text-dim hover:text-white transition-colors">联系</a>
-            </div>
-            <a href="#contact" class="px-5 py-2 bg-white text-bg hover:bg-text-dim rounded-lg text-sm font-medium transition-colors">
-                联系我
-            </a>
-        </div>
-    </nav>
-
     <!-- 首页区域 -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20">
+    <section id="home" class="min-h-screen flex items-center justify-center pt-10">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="mb-8">
@@ -204,8 +187,8 @@
                         <i class="fas fa-images mr-2"></i>我的照片
                     </h3>
                     <div class="grid grid-cols-2 gap-4 mb-8">
-                        <img src="photo1-optimized.jpg" alt="洪礼" class="w-full rounded-lg border border-border cursor-pointer hover:opacity-80 transition-opacity" onclick="openModal('photo1-hd.jpg')">
-                        <img src="photo2-optimized.jpg" alt="洪礼" class="w-full rounded-lg border border-border cursor-pointer hover:opacity-80 transition-opacity" onclick="openModal('photo2-hd.jpg')">
+                        <img src="photo1-optimized.jpg" alt="洪礼" class="w-full h-64 object-cover rounded-lg border border-border cursor-pointer hover:opacity-80 transition-opacity" onclick="openModal('photo1-hd.jpg')">
+                        <img src="photo2-optimized.jpg" alt="洪礼" class="w-full h-64 object-cover rounded-lg border border-border cursor-pointer hover:opacity-80 transition-opacity" onclick="openModal('photo2-hd.jpg')">
                     </div>
                     <p class="text-text-muted text-sm text-center">点击照片可查看大图</p>
                     
@@ -308,32 +291,32 @@
             <div class="md:hidden">
                 <div class="scroll-container px-6">
                     <div class="scroll-item bg-surface p-6 rounded-xl border border-border">
-                        <div class="text-3xl text-white mb-4"><i class="fab fa-java"></i></div>
+                        <div class="text-4xl text-white mb-4"><i class="fab fa-java"></i></div>
                         <h3 class="text-lg font-semibold mb-2 text-white">Java 开发</h3>
                         <p class="text-text-muted text-sm">Spring Boot、Spring Cloud、MyBatis、JUC 并发编程、JVM 调优</p>
                     </div>
                     <div class="scroll-item bg-surface p-6 rounded-xl border border-border">
-                        <div class="text-3xl text-white mb-4"><i class="fas fa-database"></i></div>
+                        <div class="text-4xl text-white mb-4"><i class="fas fa-database"></i></div>
                         <h3 class="text-lg font-semibold mb-2 text-white">数据库</h3>
                         <p class="text-text-muted text-sm">MySQL、Redis、MongoDB、数据库设计与优化</p>
                     </div>
                     <div class="scroll-item bg-surface p-6 rounded-xl border border-border">
-                        <div class="text-3xl text-white mb-4"><i class="fas fa-code"></i></div>
+                        <div class="text-4xl text-white mb-4"><i class="fas fa-code"></i></div>
                         <h3 class="text-lg font-semibold mb-2 text-white">Web 开发</h3>
                         <p class="text-text-muted text-sm">HTML/CSS/JavaScript、Vue.js、React、Node.js</p>
                     </div>
                     <div class="scroll-item bg-surface p-6 rounded-xl border border-border">
-                        <div class="text-3xl text-white mb-4"><i class="fas fa-robot"></i></div>
+                        <div class="text-4xl text-white mb-4"><i class="fas fa-robot"></i></div>
                         <h3 class="text-lg font-semibold mb-2 text-white">AI Agent</h3>
                         <p class="text-text-muted text-sm">OpenClaw、LangChain、大模型应用开发、智能助手</p>
                     </div>
                     <div class="scroll-item bg-surface p-6 rounded-xl border border-border">
-                        <div class="text-3xl text-white mb-4"><i class="fab fa-docker"></i></div>
+                        <div class="text-4xl text-white mb-4"><i class="fab fa-docker"></i></div>
                         <h3 class="text-lg font-semibold mb-2 text-white">DevOps</h3>
                         <p class="text-text-muted text-sm">Docker、Git、CI/CD、Linux、自动化部署</p>
                     </div>
                     <div class="scroll-item bg-surface p-6 rounded-xl border border-border">
-                        <div class="text-3xl text-white mb-4"><i class="fas fa-cloud"></i></div>
+                        <div class="text-4xl text-white mb-4"><i class="fas fa-cloud"></i></div>
                         <h3 class="text-lg font-semibold mb-2 text-white">云服务</h3>
                         <p class="text-text-muted text-sm">阿里云、火山引擎、RESTful API 设计、微服务架构</p>
                     </div>
@@ -446,20 +429,21 @@
         </div>
     </section>
 
-    <!-- 联系我区域 -->
+    <!-- 联系我区域 - 层叠滑动效果 -->
     <section id="contact" class="py-24">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-6 text-white">
+            <h2 class="text-4xl font-bold text-center mb-4 text-white">
                 联系我
             </h2>
-            <p class="text-text-dim text-center mb-16 max-w-2xl mx-auto">
+            <p class="text-text-dim text-center mb-10 max-w-2xl mx-auto">
                 有工作机会、项目合作或想交个朋友？欢迎联系我！
             </p>
             
-            <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
+            <!-- 桌面端：网格布局 -->
+            <div class="hidden md:grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
-                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center text-white">
-                        <i class="fas fa-envelope text-xl"></i>
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center text-white">
+                        <i class="fas fa-envelope text-2xl"></i>
                     </div>
                     <h3 class="font-semibold mb-2 text-white">邮箱</h3>
                     <a href="mailto:hongli272009@gmail.com" class="text-text-dim hover:text-white transition-colors">
@@ -468,8 +452,8 @@
                 </div>
                 
                 <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
-                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center text-white">
-                        <i class="fab fa-github text-xl"></i>
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center text-white">
+                        <i class="fab fa-github text-2xl"></i>
                     </div>
                     <h3 class="font-semibold mb-2 text-white">GitHub</h3>
                     <a href="https://github.com/honglisam" target="_blank" class="text-text-dim hover:text-white transition-colors">
@@ -478,12 +462,44 @@
                 </div>
                 
                 <div class="bg-surface p-8 rounded-xl border border-border text-center card-hover">
-                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center text-white">
-                        <i class="fas fa-map-marker-alt text-xl"></i>
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center text-white">
+                        <i class="fas fa-map-marker-alt text-2xl"></i>
                     </div>
                     <h3 class="font-semibold mb-2 text-white">位置</h3>
                     <p class="text-text-dim">中国 · 杭州</p>
                 </div>
+            </div>
+            
+            <!-- 移动端：层叠卡片滑动 -->
+            <div class="md:hidden">
+                <div class="scroll-container px-6">
+                    <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-lg">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2 text-white">邮箱</h3>
+                        <a href="mailto:hongli272009@gmail.com" class="text-text-dim hover:text-white transition-colors block">
+                            hongli272009@gmail.com
+                        </a>
+                    </div>
+                    <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-lg">
+                            <i class="fab fa-github text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2 text-white">GitHub</h3>
+                        <a href="https://github.com/honglisam" target="_blank" class="text-text-dim hover:text-white transition-colors block">
+                            @honglisam
+                        </a>
+                    </div>
+                    <div class="scroll-item bg-surface p-8 rounded-xl border border-border text-center" style="width: 300px;">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-lg">
+                            <i class="fas fa-map-marker-alt text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2 text-white">位置</h3>
+                        <p class="text-text-dim">中国 · 杭州</p>
+                    </div>
+                </div>
+                <p class="text-text-muted text-sm text-center mt-4">← 左右滑动查看更多 →</p>
             </div>
             
             <div class="text-center mt-12">
